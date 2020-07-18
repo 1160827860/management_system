@@ -1,0 +1,95 @@
+###################
+### 接口测试文件 ###
+###################
+
+
+### 测试登录接口 - 错误测试：用户密码错误
+GET http://localhost:8080/user/login?account=17060101101&password=1234567890
+Accept: */*
+Cache-Control: no-cache
+
+### 测试登录接口 - 错误测试：已经被注销错误
+GET http://localhost:8080/user/login?account=17060208112&password=123456789
+Accept: */*
+Cache-Control: no-cache
+
+### 测试登录接口 - 正确测试
+GET http://localhost:8080/user/login?account=17060207112&password=123456789
+Accept: */*
+Cache-Control: no-cache
+
+
+###测试注册接口 --错误测试：账号已经存在
+PUT http://localhost:8080/user/register?account=17060208112&password=123456789&name=Darksouls&major=0602
+Accept: */*
+Cache-Control: no-cache
+
+###测试注册接口 --错误测试：账号已经存在
+PUT http://localhost:8080/user/register?account=17060101101&password=123456789&name=Darksouls&major=0602
+Accept: */*
+Cache-Control: no-cache
+
+###测试注册接口 --正确测试
+PUT http://localhost:8080/user/register?account=1706020900&password=123456789&name=Darksouls&major=0602&phone=18091623803&email=1160827860@qq.com&bank_number=6123121321321312
+Accept: */*
+Cache-Control: no-cache
+
+###测试登出接口 --错误测试
+GET http://localhost:8080/user/logout?tokenSrc=Q6Z9zLc6AG77vAiBWwKq==
+Accept: */*
+Cache-Control: no-cache
+
+###测试登出接口 --错误测试
+GET http://localhost:8080/user/logout?tokenSrc=Q6Z9zLc6AG77vAiBWwKqdw
+Accept: */*
+Cache-Control: no-cache
+
+###测试登出接口 --正确测试
+GET http://localhost:8080/user/logout?tokenSrc=7r1iQ3MfJ7dCmoxDHyXAHw==
+Accept: */*
+Cache-Control: no-cache
+
+###测试注销接口 --错误测试：密码错误或者token错误
+GET http://localhost:8080/user/logoff?tokenSrc=7r1iQ3MfJ7dCmoxDHyXAHw==&password=1234567891
+Accept: */*
+Cache-Control: no-cache
+
+###测试注销接口 --错误测试：密码错误或者token错误
+GET http://localhost:8080/user/logoff?tokenSrc=1uU5p/EAoRr/fAD5vM3pOA==&password=12345678912
+Accept: */*
+Cache-Control: no-cache
+
+###测试注销接口 --正确测试
+GET http://localhost:8080/user/logoff?tokenSrc=1uU5p/EAoRr/fAD5vM3pOA==&password=123456789
+Accept: */*
+Cache-Control: no-cache
+
+###测试查询接口 --错误测试
+GET http://localhost:8080/user/query?tokenSrc=NU0JJ4gRKBO6XG8qLblkYA==
+Accept: */*
+Cache-Control: no-cache
+
+###测试查询接口 --错误测试
+GET http://localhost:8080/user/query?tokenSrc=NU0JJ4gRKBO6XG8qLblkYA==
+Accept: */*
+Cache-Control: no-cache
+
+###测试查询接口 --正确测试
+GET http://localhost:8080/user/query?tokenSrc=7r1iQ3MfJ7dCmoxDHyXAHw==
+Accept: */*
+Cache-Control: no-cache
+
+###测试修改接口 --错误测试
+PUT http://localhost:8080/user/update?tokenSrc=yOHGb2KtSabnTJUuH2fP3g==&name=修改回来了&bankNumber=6123121321321312&major=601&sex=M&phone=18091623804
+Accept: */*
+Cache-Control: no-cache
+
+###测试修改接口 --错误测试
+PUT http://localhost:8080/user/update?tokenSrc=7r1iQ3MfJ7dCmoxDHyXAHw==&name=修改回来了&bankNumber=6123121321321312&major=601&sex=M&phone=18091623804
+Accept: */*
+Cache-Control: no-cache
+
+###测试修改接口 --正确测试
+PUT http://localhost:8080/user/update?tokenSrc=yOHGb2KtSabnTJUuH2fP3g==&name=修改回来了&bankNumber=6123121321321312&major=601&sex=M&phone=18091623804
+Accept: */*
+Cache-Control: no-cache
